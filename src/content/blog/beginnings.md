@@ -1,6 +1,6 @@
 ---
 title: 'Beginnings'
-description: 'A short review of where this site started.'
+description: 'A short overview of where this site started.'
 pubDate: 'May 18 2026'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['claude', 'web', 'astro']
