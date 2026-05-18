@@ -4,7 +4,14 @@
       "Bash(npm install *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git branch *)",
+      "Bash(ls -lt ~/Downloads/*.jpg ~/Downloads/*.JPG ~/Downloads/*.jpeg 2>/dev/null | head -5)",
+      "Read(//Users/bradleydurham/Downloads/**)",
+      "Bash(ls -lt ~/Desktop/*.jpg ~/Desktop/*.JPG ~/Desktop/*.jpeg 2>/dev/null | head -5)",
+      "Read(//Users/bradleydurham/Desktop/**)",
+      "Bash(find ~/Pictures ~/Documents -name \"*.jpg\" -newer ~/Documents/Sites/bradley-durham-blog/package.json 2>/dev/null | head -10)",
+      "Read(//Users/bradleydurham/Pictures/**)"
     ]
   }
 }

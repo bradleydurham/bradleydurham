@@ -1,8 +1,23 @@
 ---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import now from '../data/now.json';
+import bioPic from '../assets/blog-placeholder-about.jpg';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const photoModules = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/*.{jpg,jpeg,png,webp}', { eager: true });
+const recentPhotos = Object.entries(photoModules)
+	.sort(([a], [b]) => b.localeCompare(a))
+	.slice(0, 5)
+	.map(([, mod]) => mod.default);
 ---
 
 <!doctype html>
@@ -13,37 +28,379 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="intro">
+				<div class="intro-text">
+					<h1>Hi, I'm Bradley.</h1>
+					<p>
+						I'm a husband, dad, and creative professional based in Greenville, SC. I have been building websites, creating graphics, creating and editing video, and photographing as many things as possible for over 15 years. 
+					</p>
+				</div>
+				<div class="bio-pic">
+					<Image src={bioPic} alt="Bradley Durham" width={440} height={586} />
+				</div>
+			</section>
+
+			<section class="now-section">
+				<h2 class="section-heading">Now</h2>
+				<div class="card-grid">
+
+					<!-- Card 1: Media -->
+					<div class="card">
+						<div class="media-item">
+							<div class="media-icon">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+									<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+								</svg>
+							</div>
+							<div class="media-content">
+								<span class="media-label">Reading</span>
+								<p class="media-title">{now.reading.title}</p>
+							</div>
+						</div>
+						<div class="media-divider"></div>
+						<div class="media-item">
+							<div class="media-icon">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+									<line x1="8" y1="21" x2="16" y2="21"/>
+									<line x1="12" y1="17" x2="12" y2="21"/>
+								</svg>
+							</div>
+							<div class="media-content">
+								<span class="media-label">Watching</span>
+								<p class="media-title">{now.watching.title}</p>
+							</div>
+						</div>
+						<div class="media-divider"></div>
+						<div class="media-item">
+							<div class="media-icon">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+									<path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+									<path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+								</svg>
+							</div>
+							<div class="media-content">
+								<span class="media-label">Listening</span>
+								<p class="media-title">{now.listening.title}</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Card 2: Working on -->
+					<div class="card card-feature">
+						<div class="feature-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+							</svg>
+						</div>
+						<span class="feature-label">Working on</span>
+						<h3 class="feature-title">{now.workingOn.title}</h3>
+						<p class="feature-desc">{now.workingOn.description}</p>
+					</div>
+
+					<!-- Card 3: Thinking about -->
+					<div class="card card-feature">
+						<div class="feature-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<line x1="9" y1="18" x2="15" y2="18"/>
+								<line x1="10" y1="22" x2="14" y2="22"/>
+								<path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14z"/>
+							</svg>
+						</div>
+						<span class="feature-label">Thinking about</span>
+						<p class="feature-text">{now.thinkingAbout}</p>
+					</div>
+
+				</div>
+			</section>
+
+			<section class="writing-section">
+				<h2 class="section-heading">Writing</h2>
+				<ul class="post-list">
+					{posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<div class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<div class="post-body">
+									<span class="post-title">{post.data.title}</span>
+									{post.data.description && (
+										<p class="post-excerpt">{post.data.description}</p>
+									)}
+								</div>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<section class="photos-section">
+				<div class="section-header">
+					<h2 class="section-heading">Photos</h2>
+					<a href="/photos" class="see-more">See all <span class="arrow" aria-hidden="true">→</span></a>
+				</div>
+				<div class="photo-row">
+					{recentPhotos.map((photo) => (
+						<a href="/photos" class="photo-item">
+							<Image src={photo} alt="" width={300} height={300} />
+						</a>
+					))}
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		max-width: 960px;
+	}
+
+	.intro {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+	.intro-text {
+		flex: 1;
+		min-width: 0;
+		max-width: 640px;
+	}
+	.intro h1 {
+		margin-top: 0;
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+	}
+	.intro p {
+		color: var(--text-secondary);
+		margin: 0;
+	}
+	.bio-pic {
+		flex-shrink: 0;
+		width: 220px;
+		height: 293px;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.bio-pic img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.section-heading {
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.09em;
+		text-transform: uppercase;
+		color: #9ca3af;
+		margin: 0 0 0.875rem;
+	}
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+		align-items: stretch;
+	}
+
+	.card {
+		border: 1px solid var(--border);
+		border-radius: 10px;
+		overflow: hidden;
+		background: var(--bg-card);
+	}
+
+	/* Card 1: Media list */
+	.media-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.875rem;
+		padding: 1rem 1.125rem;
+	}
+	.media-icon {
+		color: var(--accent);
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+	.media-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		min-width: 0;
+	}
+	.media-label {
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #9ca3af;
+	}
+	.media-title {
+		margin: 0;
+		font-size: 0.9375rem;
+		color: var(--text);
+		line-height: 1.35;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.media-divider {
+		height: 1px;
+		background: var(--border);
+	}
+
+	/* Cards 2 & 3 */
+	.card-feature {
+		padding: 1.25rem;
+		display: flex;
+		flex-direction: column;
+	}
+	.feature-icon {
+		color: var(--accent);
+		margin-bottom: 0.75rem;
+	}
+	.feature-label {
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #9ca3af;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+	.feature-title {
+		font-size: 1rem;
+		font-weight: 700;
+		margin: 0 0 0.625rem;
+		line-height: 1.3;
+		color: var(--text);
+	}
+	.feature-desc,
+	.feature-text {
+		margin: 0;
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.writing-section {
+		margin-top: 3rem;
+	}
+
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.post-list li {
+		margin: 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.post-list li:first-child {
+		border-top: 1px solid var(--border);
+	}
+	.post-list a {
+		display: flex;
+		align-items: baseline;
+		gap: 1.75rem;
+		padding: 1rem 0.75rem;
+		margin: 0 -0.75rem;
+		border-radius: 8px;
+		text-decoration: none;
+		color: var(--text);
+		transition: background 0.15s;
+	}
+	.post-list a:hover {
+		background: var(--bg-hover);
+	}
+	.post-date {
+		flex-shrink: 0;
+		width: 7rem;
+		font-size: 0.8125rem;
+		color: var(--text-muted);
+		padding-top: 0.125rem;
+	}
+	.post-body {
+		flex: 1;
+		min-width: 0;
+	}
+	.post-title {
+		display: block;
+		font-size: 1rem;
+	}
+	.post-excerpt {
+		margin: 0.25rem 0 0;
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		line-height: 1.5;
+	}
+
+	.photos-section {
+		margin-top: 3rem;
+	}
+	.section-header {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		margin-bottom: 0.875rem;
+	}
+	.section-header .section-heading {
+		margin: 0;
+	}
+	.see-more {
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		text-decoration: none;
+	}
+	.see-more:hover {
+		color: var(--accent);
+	}
+	.arrow {
+		display: inline-block;
+		transition: transform 0.15s;
+	}
+	.see-more:hover .arrow {
+		transform: translateX(3px);
+	}
+	.photo-row {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 0.5rem;
+	}
+	.photo-item {
+		display: block;
+		aspect-ratio: 1;
+		overflow: hidden;
+		border-radius: 6px;
+	}
+	.photo-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: opacity 0.15s;
+	}
+	.photo-item:hover img {
+		opacity: 0.85;
+	}
+
+	@media (max-width: 700px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+		.media-title {
+			white-space: normal;
+		}
+		.photo-row {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

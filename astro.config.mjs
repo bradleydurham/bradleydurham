@@ -13,28 +13,27 @@ export default defineConfig({
 
   fonts: [
       {
-          provider: fontProviders.local(),
-          name: 'Atkinson',
-          cssVariable: '--font-atkinson',
-          fallbacks: ['sans-serif'],
-          options: {
-              variants: [
-                  {
-                      src: ['./src/assets/fonts/atkinson-regular.woff'],
-                      weight: 400,
-                      style: 'normal',
-                      display: 'swap',
-                  },
-                  {
-                      src: ['./src/assets/fonts/atkinson-bold.woff'],
-                      weight: 700,
-                      style: 'normal',
-                      display: 'swap',
-                  },
-              ],
-          },
+          provider: fontProviders.google(),
+          name: 'Inter',
+          cssVariable: '--font-sans',
+          fallbacks: ['system-ui', 'sans-serif'],
+          weights: ['400', '700'],
       },
-	],
+      {
+          provider: fontProviders.google(),
+          name: 'JetBrains Mono',
+          cssVariable: '--font-mono',
+          fallbacks: ['ui-monospace', 'monospace'],
+          weights: ['400'],
+      },
+      {
+          provider: fontProviders.google(),
+          name: 'Ephesis',
+          cssVariable: '--font-signature',
+          fallbacks: ['cursive'],
+          weights: ['400'],
+      },
+  ],
 
   adapter: netlify(),
 });

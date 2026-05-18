@@ -1,0 +1,65 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+import now from '../data/now.json';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Now — ${SITE_TITLE}`} description="What I'm up to lately" />
+	</head>
+	<body>
+		<Header />
+		<main class="prose">
+			<h1>Now</h1>
+			<p class="updated">Updated {now.updatedAt} &middot; {now.location}</p>
+
+			<h2>Reading</h2>
+			<p>{now.reading.title}{now.reading.author ? ` — ${now.reading.author}` : ''}</p>
+
+			<h2>Watching</h2>
+			<p>{now.watching.title}</p>
+
+			<h2>Listening</h2>
+			<p>{now.listening.title}</p>
+
+			<h2>Working on</h2>
+			<p>{now.workingOn.title} — {now.workingOn.description}</p>
+
+			<h2>Thinking about</h2>
+			<p>{now.thinkingAbout}</p>
+
+			<hr />
+			<p class="footnote">
+				A <a href="https://nownownow.com/about">/now page</a> is a snapshot of what someone's
+				focused on at a given point in time. Updated whenever things change.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	h1 {
+		margin-top: 0;
+		margin-bottom: 0.25rem;
+	}
+	.updated {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		margin: 0 0 2rem;
+	}
+	h2 {
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--accent);
+		margin: 1.75rem 0 0.375rem;
+	}
+	.footnote {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+</style>

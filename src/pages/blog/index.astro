@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
@@ -15,100 +14,86 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead title={`Writing — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+			<h1>Writing</h1>
+			<ul class="post-list">
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<div class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<div class="post-body">
+									<span class="post-title">{post.data.title}</span>
+									{post.data.description && (
+										<p class="post-excerpt">{post.data.description}</p>
 									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+								</div>
+							</a>
+						</li>
+					))
+				}
+			</ul>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	h1 {
+		margin-top: 0;
+		margin-bottom: 2rem;
+	}
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.post-list li {
+		margin: 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.post-list li:first-child {
+		border-top: 1px solid var(--border);
+	}
+	.post-list a {
+		display: flex;
+		align-items: baseline;
+		gap: 1.75rem;
+		padding: 1rem 0.75rem;
+		margin: 0 -0.75rem;
+		border-radius: 8px;
+		text-decoration: none;
+		color: var(--text);
+		transition: background 0.15s;
+	}
+	.post-list a:hover {
+		background: var(--bg-hover);
+	}
+	.post-date {
+		flex-shrink: 0;
+		width: 7rem;
+		font-size: 0.8125rem;
+		color: var(--text-muted);
+		padding-top: 0.125rem;
+	}
+	.post-body {
+		flex: 1;
+		min-width: 0;
+	}
+	.post-title {
+		display: block;
+		font-size: 1rem;
+	}
+	.post-excerpt {
+		margin: 0.25rem 0 0;
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		line-height: 1.5;
+	}
+</style>
