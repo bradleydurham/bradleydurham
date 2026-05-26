@@ -34,7 +34,12 @@
       "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog stash drop)",
       "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog log --oneline -5)",
       "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog pull --no-rebase)",
-      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m \"chore: merge calendar update with Sports category addition\")"
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m \"chore: merge calendar update with Sports category addition\")",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add src/pages/now.astro)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m 'style: add hr between sections, move footnote below watchlist *)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog pull --no-rebase --no-edit)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add .github/workflows/update-now.yml)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m 'ci: pull --rebase before push to avoid race with local commits *)"
     ]
   }
 }
