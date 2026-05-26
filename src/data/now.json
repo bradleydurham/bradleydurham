@@ -31,6 +31,15 @@
       }
     ],
     "documentaries": [],
-    "sports": []
+    "sports": [
+      {
+        "title": "NWSL",
+        "service": "Prime Video"
+      },
+      {
+        "title": "USL",
+        "service": "ESPN+"
+      }
+    ]
   }
 }
