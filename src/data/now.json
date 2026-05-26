@@ -20,7 +20,16 @@
   "thinkingAbout": "Is using AI to help code a good idea? What are the benefits and drawbacks? How can I use it effectively without becoming too reliant on it?",
   "watchlist": {
     "movies": [],
-    "tvShows": [],
+    "tvShows": [
+      {
+        "title": "Succession",
+        "service": "HBO Max"
+      },
+      {
+        "title": "Succession",
+        "service": "HBO Max"
+      }
+    ],
     "documentaries": [],
     "sports": []
   }
