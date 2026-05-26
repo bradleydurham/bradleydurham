@@ -19,7 +19,22 @@
       "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m ' *)",
       "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog push)",
       "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add scripts/update-watchlist.mjs)",
-      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m 'debug: log parsed calendar events in update-watchlist script *)"
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m 'debug: log parsed calendar events in update-watchlist script *)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add src/data/now.json src/pages/now.astro scripts/update-watchlist.mjs)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m 'feat: add Sports category to watchlist *)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog pull --rebase)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog stash)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog stash pop)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add src/data/now.json)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog rebase --continue --no-edit)",
+      "Bash(GIT_EDITOR=true git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog rebase --continue)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog diff --cached --name-only)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog diff --name-only)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog rebase --abort)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog stash drop)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog log --oneline -5)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog pull --no-rebase)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m \"chore: merge calendar update with Sports category addition\")"
     ]
   }
 }
