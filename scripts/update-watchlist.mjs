@@ -72,7 +72,7 @@ const future = events
 
 console.log(`Past/today: ${past.length}, Future: ${future.length}`);
 
-const watchlist = { movies: [], tvShows: [], documentaries: [] };
+const watchlist = { movies: [], tvShows: [], documentaries: [], sports: [] };
 
 for (const event of future) {
 	const { service, type } = parseDescription(event.description);
@@ -81,6 +81,7 @@ for (const event of future) {
 	if (type === 'Movie') watchlist.movies.push(entry);
 	else if (type === 'TV') watchlist.tvShows.push(entry);
 	else if (type === 'Documentary') watchlist.documentaries.push(entry);
+	else if (type === 'Sports') watchlist.sports.push(entry);
 	else console.warn(`Skipping "${event.title}" — unrecognized type: "${type}"`);
 }
 
@@ -94,4 +95,4 @@ if (past[0]) {
 now.watchlist = watchlist;
 
 writeFileSync(NOW_JSON_PATH, JSON.stringify(now, null, 2) + '\n');
-console.log(`Updated: watching="${now.watching.title}", ${watchlist.movies.length} movies, ${watchlist.tvShows.length} TV shows, ${watchlist.documentaries.length} documentaries`);
+console.log(`Updated: watching="${now.watching.title}", ${watchlist.movies.length} movies, ${watchlist.tvShows.length} TV shows, ${watchlist.documentaries.length} documentaries, ${watchlist.sports.length} sports`);

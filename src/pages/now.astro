@@ -90,7 +90,21 @@ import now from '../data/now.json';
 				</Fragment>
 			)}
 
-			{!now.watchlist?.movies?.length && !now.watchlist?.tvShows?.length && !now.watchlist?.documentaries?.length && (
+			{now.watchlist?.sports?.length > 0 && (
+				<Fragment>
+					<h3>Sports</h3>
+					<ul class="watchlist">
+						{now.watchlist.sports.map((item: { title: string; service: string }) => (
+							<li class="entry">
+								<span class="title">{item.title}</span>
+								{item.service && <span class="service">{item.service}</span>}
+							</li>
+						))}
+					</ul>
+				</Fragment>
+			)}
+
+			{!now.watchlist?.movies?.length && !now.watchlist?.tvShows?.length && !now.watchlist?.documentaries?.length && !now.watchlist?.sports?.length && (
 				<p class="footnote">Nothing queued up yet.</p>
 			)}
 		</main>
