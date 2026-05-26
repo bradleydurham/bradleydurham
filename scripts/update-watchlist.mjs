@@ -55,6 +55,13 @@ const text = await response.text();
 const events = parseICal(text);
 const today = todayNY();
 
+console.log(`Today: ${today}`);
+console.log(`Parsed ${events.length} event(s) from calendar`);
+events.forEach((e) => {
+	const { service, type } = parseDescription(e.description);
+	console.log(`  [${e.date}] "${e.title}" | service="${service}" type="${type}" | raw desc: ${JSON.stringify(e.description)}`);
+});
+
 const past = events
 	.filter((e) => e.date <= today)
 	.sort((a, b) => b.date.localeCompare(a.date));
@@ -62,6 +69,8 @@ const past = events
 const future = events
 	.filter((e) => e.date > today)
 	.sort((a, b) => a.date.localeCompare(b.date));
+
+console.log(`Past/today: ${past.length}, Future: ${future.length}`);
 
 const watchlist = { movies: [], tvShows: [], documentaries: [] };
 
