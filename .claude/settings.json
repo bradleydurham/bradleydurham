@@ -11,7 +11,15 @@
       "Bash(ls -lt ~/Desktop/*.jpg ~/Desktop/*.JPG ~/Desktop/*.jpeg 2>/dev/null | head -5)",
       "Read(//Users/bradleydurham/Desktop/**)",
       "Bash(find ~/Pictures ~/Documents -name \"*.jpg\" -newer ~/Documents/Sites/bradley-durham-blog/package.json 2>/dev/null | head -10)",
-      "Read(//Users/bradleydurham/Pictures/**)"
+      "Read(//Users/bradleydurham/Pictures/**)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog status)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog remote -v)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog diff HEAD -- README.md astro.config.mjs netlify.toml)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add src/data/now.json src/pages/now.astro .github/ scripts/)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m ' *)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog push)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog add scripts/update-watchlist.mjs)",
+      "Bash(git -C /Users/bradleydurham/Documents/Sites/bradley-durham-blog commit -m 'debug: log parsed calendar events in update-watchlist script *)"
     ]
   }
 }
