@@ -20,11 +20,15 @@ import now from '../data/now.json';
 			<h2>Reading</h2>
 			<p>{now.reading.title}{now.reading.author ? ` — ${now.reading.author}` : ''}</p>
 
+			<hr />
+
 			<h2>Watching</h2>
 			<p class="entry">
 				<span class="title">{now.watching.title}</span>
 				{now.watching.service && <span class="service">{now.watching.service}</span>}
 			</p>
+
+			<hr />
 
 			<h2>Listening</h2>
 			<p class="entry">
@@ -32,17 +36,15 @@ import now from '../data/now.json';
 				{now.listening.service && <span class="service">{now.listening.service}</span>}
 			</p>
 
+			<hr />
+
 			<h2>Working on</h2>
 			<p>{now.workingOn.title} — {now.workingOn.description}</p>
 
+			<hr />
+
 			<h2>Thinking about</h2>
 			<p>{now.thinkingAbout}</p>
-
-			<hr />
-			<p class="footnote">
-				A <a href="https://nownownow.com/about">/now page</a> is a snapshot of what someone's
-				focused on at a given point in time. Updated whenever things change.
-			</p>
 
 			<hr />
 
@@ -107,6 +109,12 @@ import now from '../data/now.json';
 			{!now.watchlist?.movies?.length && !now.watchlist?.tvShows?.length && !now.watchlist?.documentaries?.length && !now.watchlist?.sports?.length && (
 				<p class="footnote">Nothing queued up yet.</p>
 			)}
+
+			<hr />
+			<p class="footnote">
+				A <a href="https://nownownow.com/about">/now page</a> is a snapshot of what someone's
+				focused on at a given point in time. Updated whenever things change.
+			</p>
 		</main>
 		<Footer />
 	</body>
