@@ -6,8 +6,8 @@
     "author": "Jeff Walker"
   },
   "watching": {
-    "title": "Succession",
-    "service": "HBO Max"
+    "title": "NWSL",
+    "service": "Prime Video"
   },
   "listening": {
     "title": "Essential INXS",
@@ -23,10 +23,6 @@
     "tvShows": [],
     "documentaries": [],
     "sports": [
-      {
-        "title": "NWSL",
-        "service": "Prime Video"
-      },
       {
         "title": "USL",
         "service": "ESPN+"
