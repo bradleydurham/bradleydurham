@@ -6,8 +6,8 @@
     "author": "Jeff Walker"
   },
   "watching": {
-    "title": "NWSL",
-    "service": "Prime Video"
+    "title": "USL",
+    "service": "ESPN+"
   },
   "listening": {
     "title": "Essential INXS",
@@ -22,11 +22,6 @@
     "movies": [],
     "tvShows": [],
     "documentaries": [],
-    "sports": [
-      {
-        "title": "USL",
-        "service": "ESPN+"
-      }
-    ]
+    "sports": []
   }
 }
